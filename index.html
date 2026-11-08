@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulador del Efecto Túnel Cuántico | UNEMI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- PANTALLA 1: BIENVENIDA -->
+<section id="bienvenida" class="pantalla bienvenida">
+  <div class="agua"></div>
+  <div class="burbujas" aria-hidden="true"></div>
+
+  <div class="intro">
+    <div class="eyebrow">
+      UNIVERSIDAD ESTATAL DE MILAGRO · UNEMI
+    </div>
+
+    <div class="atom">⚛</div>
+
+    <h1>
+      EXPLORA EL UNIVERSO<br>
+      <em>CUÁNTICO</em>
+    </h1>
+
+    <p>
+      ¿Puede un electrón atravesar una barrera que
+      clásicamente no podría superar? Descúbrelo
+      experimentando con energía, ondas y probabilidades.
+    </p>
+
+    <button class="btn principal grande" id="empezar">
+      EMPEZAR →
+    </button>
+
+    <small>
+      Experiencia interactiva de aprendizaje · Mecánica cuántica
+    </small>
+  </div>
+</section>
+
+<!-- PANTALLA 2: INTEGRANTES -->
+<section id="creditos" class="pantalla creditos oculto">
+  <div class="credit-card">
+    <div class="eyebrow">
+      UNIVERSIDAD ESTATAL DE MILAGRO
+    </div>
+
+    <div class="atom small">⚛</div>
+
+    <h2>
+      Simulador Interactivo del<br>
+      Efecto Túnel Cuántico
+    </h2>
+
+    <p>
+      Una herramienta educativa para investigar la
+      transmisión y reflexión de electrones ante
+      una barrera de potencial.
+    </p>
+
+    <div class="credit-grid">
+      <div>
+        <span>FACULTAD</span>
+        <strong>Educación</strong>
+      </div>
+
+      <div>
+        <span>CARRERA</span>
+        <strong>Pedagogía de las Ciencias Experimentales</strong>
+      </div>
+
+      <div>
+        <span>ASIGNATURA</span>
+        <strong>Diseño de Simulación y Animaciones</strong>
+      </div>
+
+      <div>
+        <span>INTEGRANTES</span>
+        <strong>Merizalde y Pino</strong>
+      </div>
+
+      <div>
+        <span>DOCENTE</span>
+        <strong>Msc. Gabriela Barrera</strong>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn secundario" id="volverInicio">
+        ← VOLVER
+      </button>
+      <button class="btn principal" id="entrar">
+        INGRESAR AL SIMULADOR →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- PANTALLA 3: SIMULADOR -->
+<section id="simulador" class="pantalla simulador oculto">
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon">⚛</span>
+      <div>
+        <b>LABORATORIO CUÁNTICO</b>
+        <small>UNEMI · Simulación educativa</small>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <span class="status">Modelo 1D</span>
+      <button id="regresar" class="btn minimal">
+        ← Inicio
+      </button>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <main class="graficas">
+
+      <div class="page-heading">
+        <div>
+          <span class="eyebrow">SIMULACIÓN INTERACTIVA</span>
+          <h2>Efecto túnel cuántico</h2>
+          <p>
+            Explora cómo cambia el comportamiento de
+            un electrón al modificar una barrera de potencial.
+          </p>
+        </div>
+        <span class="chip" id="regimen">
+          E &lt; V₀ · Túnel cuántico
+        </span>
+      </div>
+
+      <!-- GRÁFICA 1 -->
+      <article class="plot-card">
+        <div class="plot-heading">
+          <div>
+            <span class="number">01</span>
+            <h3>Energía y potencial</h3>
+          </div>
+          <div class="legend">
+            <span>Barrera V(x)</span>
+            <span>Energía E</span>
+          </div>
+        </div>
+        <canvas id="grafEnergia"></canvas>
+      </article>
+
+      <!-- GRÁFICA 2 -->
+      <article class="plot-card">
+        <div class="plot-heading">
+          <div>
+            <span class="number">02</span>
+            <h3>Función de onda ψ(x)</h3>
+          </div>
+          <div class="legend">
+            <span>Parte real</span>
+            <span>Parte imaginaria</span>
+          </div>
+        </div>
+        <canvas id="grafOnda"></canvas>
+      </article>
+
+     
+<!-- GRÁFICA 3: PAQUETE DE ONDAS -->
+<article class="plot-card">
+  <div class="plot-heading">
+    <div>
+      <span class="number">03</span>
+      <h3>
+        Evolución del paquete de ondas |ψ(x,t)|²
+      </h3>
+    </div>
+
+    <span class="chip">
+      SIMULACIÓN DINÁMICA
+    </span>
+  </div>
+
+  <canvas
+    id="grafDensidad"
+    aria-label="Densidad de probabilidad del paquete de ondas"
+  ></canvas>
+
+  <p class="tiny">
+    Observa cómo el paquete de ondas se aproxima
+    a la barrera y evoluciona en componentes
+    reflejada y transmitida.
+  </p>
+</article>
+
+
+      <div class="disclaimer">
+        Modelo de dispersión estacionaria en una barrera
+        rectangular unidimensional. La animación representa
+        la evolución de fase de la función de onda.
+      </div>
+
+    </main>
+
+    <!-- PANEL LATERAL -->
+    <aside class="sidebar">
+
+      <div class="side-card">
+        <div class="side-heading">
+          <h3>Panel de control</h3>
+          <span>AJUSTES</span>
+        </div>
+
+        <label for="energia">
+          Energía del electrón
+          <output id="energiaValor">1.00 eV</output>
+        </label>
+        <input id="energia" type="range"
+               min="0.1" max="5" step="0.05" value="1">
+        <div class="range-labels">
+          <span>0.1 eV</span><span>5 eV</span>
+        </div>
+
+        <label for="barrera">
+          Altura de la barrera
+          <output id="barreraValor">2.00 eV</output>
+        </label>
+        <input id="barrera" type="range"
+               min="0.5" max="10" step="0.05" value="2">
+        <div class="range-labels">
+          <span>0.5 eV</span><span>10 eV</span>
+        </div>
+
+        <label for="ancho">
+          Anchura de la barrera
+          <output id="anchoValor">0.50 nm</output>
+        </label>
+        <input id="ancho" type="range"
+               min="0.1" max="2" step="0.05" value="0.5">
+        <div class="range-labels">
+          <span>0.1 nm</span><span>2 nm</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <h4>Componentes visibles</h4>
+
+        <label class="check">
+          <input id="mostrarReal" type="checkbox" checked>
+          Parte real de ψ
+        </label>
+
+        <label class="check">
+          <input id="mostrarImag" type="checkbox" checked>
+          Parte imaginaria de ψ
+        </label>
+
+        <label class="check">
+          <input id="mostrarDensidad" type="checkbox" checked>
+          Densidad de probabilidad
+        </label>
+
+        <div class="divider"></div>
+
+        <h4>Animación</h4>
+        <div class="play-controls">
+          <button id="iniciar" class="btn play">▶ Iniciar</button>
+          <button id="pausar" class="btn outline">Ⅱ Pausar</button>
+          <button id="reiniciar" class="btn outline">↺ Reiniciar</button>
+        </div>
+
+        <p class="tiny">
+          La fase animada no altera T ni R.
+        </p>
+      </div>
+
+      <!-- RESULTADOS -->
+      <div class="side-card">
+        <div class="side-heading">
+          <h3>Resultados</h3>
+          <span>EN TIEMPO REAL</span>
+        </div>
+
+        <div class="result">
+          <span>Transmisión (T)</span>
+          <strong id="transmision">2.354712 %</strong>
+          <div class="meter">
+            <div id="barraT" class="fillT"></div>
+          </div>
+        </div>
+
+        <div class="result">
+          <span>Reflexión (R)</span>
+          <strong id="reflexion">97.645288 %</strong>
+          <div class="meter">
+            <div id="barraR" class="fillR"></div>
+          </div>
+        </div>
+
+        <p class="formula">T + R = 1</p>
+      </div>
+
+      <!-- EXPLICACIÓN -->
+      <div class="side-card educational">
+        <h3>¿Qué estás observando?</h3>
+        <p id="explicacion">
+          Cuando la energía del electrón es menor que
+          la barrera, existe una probabilidad no nula
+          de transmisión.
+        </p>
+
+        <button class="btn minimal" id="reiniciarTodo">
+          Restablecer parámetros ↺
+        </button>
+      </div>
+
+    </aside>
+  </div>
+
+  <footer class="footer">
+    UNEMI · Facultad de Educación · Merizalde y Pino
+  </footer>
+
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
